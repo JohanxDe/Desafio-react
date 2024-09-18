@@ -35,7 +35,7 @@ function App() {
         precio="$25.000"/>
         <div style={botonesCard}>
           <button style={{backgroundColor:"white", border:"solid 1px black", color:"black"}}>ver mas</button>
-          <button style={{backgroundColor:"black", border:"solid 1px black"}}>🛒 Añadir</button>
+          <button style={{backgroundColor:"black", border:"solid 1px black", color:"white"}}>🛒 Añadir</button>
         </div>
       </div>
       <div>
@@ -46,18 +46,18 @@ function App() {
         precio="$25.000"/>
         <div style={botonesCard}>
           <button style={{backgroundColor:"white", border:"solid 1px black", color:"black"}}>Ver Mas</button>
-          <button style={{backgroundColor:"black", border:"solid 1px black"}}>🛒 Añadir</button>
+          <button style={{backgroundColor:"black", border:"solid 1px black", color:"white"}}>🛒 Añadir</button>
         </div>
       </div>
       <div>
         <Propiedades
         imagen="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3" 
         nombre="Pizza Pepperoni"
-        ingredientes={["mozzarella, ", "pepperoni, ", "orégano", ", aceirunas "]} 
+        ingredientes={["mozzarella, ", "pepperoni, ", "orégano", ", aceitunas "]} 
         precio="25000"/>
          <div style={botonesCard}>
           <button style={{backgroundColor:"white", border:"solid 1px black", color:"black"}}>Ver mas</button>
-          <button style={{backgroundColor:"black", border:"solid 1px black"}}>🛒 Añadir</button>
+          <button style={{backgroundColor:"black", border:"solid 1px black", color:"white"}}>🛒 Añadir</button>
         </div>
       </div>
     </div>
