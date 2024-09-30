@@ -32,7 +32,12 @@ function Register({ onRegisterSuccess }) {
       setNombre('');
       setContra('');
       setRecontra('');
+
       onRegisterSuccess(); // Llamar la función para regresar a App
+
+      alert("Registro exitoso") // Mensaje de éxito
+
+      
     };
     let cardStyle = {
         display: 'flex',

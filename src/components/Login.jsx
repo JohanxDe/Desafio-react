@@ -24,6 +24,8 @@ function Login({onLoginSuccess}) {
         setEmail('');
         setContras('');
         onLoginSuccess(); //llama a la funcion para regresar a App
+
+        alert("Login exitoso") // Mensaje de éxito
     };
     
     let cardStyle = {
