@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,4 +18,33 @@
 }
 body{
   background-color: white;
+}
+.error{
+  color: red;
+  text-align: center;
+  padding: 15px;
+}
+
+.cardRegister{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: '20px';
+  margin: '20px auto '; /*Centrar la card en la pantalla*/
+  width: '300px'; /*Puedes ajustar el ancho según tus necesidades*/
+  border: '1px solid #ccc';
+  border-radius: '10px';
+  background-color: '#fff'; /*Color de fondo de la card*/
+  box-shadow: '0 4px 8px rgba(0, 0, 0, 0.1)'; /* Sombra suave*/
+}
+
+.cardRegister input{
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fondoLogin{
+  background-image: url('');
 }
