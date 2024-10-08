@@ -48,3 +48,110 @@ body{
 .fondoLogin{
   background-image: url('');
 }
+
+.pizza-list {
+  padding: 20px;
+}
+
+.pizza-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Cambié a 3 columnas fijas */
+  gap: 20px;
+  color: black;
+}
+
+.pizza-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #f9f9f9;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadí sombra */
+  transition: transform 0.2s; /* Animación suave */
+}
+
+.pizza-card:hover {
+  transform: scale(1.05); /* Efecto hover */
+}
+
+.pizza-card h2 {
+  font-size: 1.5em;
+}
+
+.pizza-card button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pizza-card button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pizza-image {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  height: 200px;
+  object-fit: cover; /* Asegura que las imágenes se ajusten */
+}
+
+.cart {
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  margin-top: 20px;
+  color: black;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.quantity-buttons button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pay-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.pay-button:hover {
+  background-color: #0056b3;
+}
+
+.pizza-card ul {
+  padding-left: 20px; /* Agrega espacio a la izquierda para alinear correctamente */
+  text-align: left;   /* Alinea el texto a la izquierda */
+}
+
+.pizza-card li {
+  list-style-position: inside; /* Mueve el punto de la lista hacia adentro */
+  margin-bottom: 5px; /* Agrega un pequeño margen entre los elementos de la lista */
+}

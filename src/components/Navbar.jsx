@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { formatNumber } from '../helpers/formatNumbers';
 
-function Navbar({ onRegisterClick, onLoginClik }) {
+function Navbar({ onRegisterClick, onLoginClik, onCartClick }) {
     // Estado para manejar el token
     const [token, setToken] = useState(false);
 
@@ -54,13 +54,13 @@ function Navbar({ onRegisterClick, onLoginClik }) {
                             </>
                         ) : (
                             <>
-                                <button style={botones} onClick={() => {setToken(true); onLoginClik()}}>🔐 Login</button>
+                                <button style={botones} onClick={() => { setToken(true); onLoginClik() }}>🔐 Login</button>
                                 <button style={botones} onClick={onRegisterClick}>🔐 Register</button>
                             </>
                         )}
                     </div>
                     <div>
-                        <button style={botonTotal}>🛒 Total: ${formatNumber(total)}</button>
+                        <button onClick={onCartClick} style={botonTotal}>🛒 Total:</button>
                     </div>
                 </div>
             </div>
