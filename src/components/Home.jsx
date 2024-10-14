@@ -1,52 +1,56 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import { pizzas } from '../pizzas'
 import CardPizza from './CardPizza'
 import Cart from './Cart'
+import Pizza from './Pizza'
 
 function Home({agregarAlCarrito}) {
 
-  //const [pizzaCart, setPizzaCart] = useState([]); // Estado del carrito
+    const [pizzas, setPizzas] = useState([]);
+    const [selectedPizzaId, setSelectedPizzaId] = useState(null);
+      
+    useEffect(() => {
+        fetch('http://localhost:5000/api/pizzas')
+        .then((response) => response.json())
+        .then((data) => {console.log ('pizzas obtenidas', data); 
+        setPizzas(data)
+    }) 
+        .catch((error) => console.error('Error al obtener pizzas:', error));
+    }, []); 
 
-  // Función para agregar pizzas al carrito
-  //const agregarAlCarrito = (pizzaSeleccionada) => {
-  //  const pizzaEnCarrito = pizzaCart.find((pizza) => pizza.nombre === pizzaSeleccionada.nombre);
-    
-  //  if (pizzaEnCarrito) {
-  //     Si la pizza ya está en el carrito, aumentamos la cantidad
-  //    const nuevoCarrito = pizzaCart.map((pizza) =>
-  //      pizza.nombre === pizzaSeleccionada.nombre
-  //        ? { ...pizza, cantidad: pizza.cantidad + 1 }
-  //        : pizza
-  //    );
-  //    setPizzaCart(nuevoCarrito);
-  //  } else {
-  //     Si la pizza no está en el carrito, la agregamos
-  //    setPizzaCart([...pizzaCart, { ...pizzaSeleccionada, cantidad: 1 }]);
-  // }
- // };
+    const handlePizzaClick = (id) => {
+        setSelectedPizzaId(id)
+    }
 
   return (
     <div>
         <Header/>
-        <div className="pizza-list">
-            <h1>Nuestras Pizzas</h1>
-            <div className="pizza-grid">
-                {pizzas.map((pizza, index) => (
-                    <CardPizza
-                        key={index}
-                        nombre={pizza.nombre}
-                        ingredientes={pizza.ingredientes}
-                        precio={pizza.precio}
-                        disponible={pizza.disponible}
-                        imagen={pizza.imagen}
-                        agregarAlCarrito={()=> agregarAlCarrito(pizza)}
-                    />
-                ))}
-            </div>
+        {selectedPizzaId ? (
+            <Pizza id={selectedPizzaId} agregarAlCarrito={agregarAlCarrito}/>
+        ) : (
+    <div className="pizza-list">
+        <h1>Nuestras Pizzas</h1>
+        <div className="pizza-grid">
+          {pizzas.length === 0 ? (
+            <p>Cargando pizzas...</p>
+          ) : (
+            pizzas.map((pizza, index) => (
+              <CardPizza
+              key={pizza.id}
+              nombre={pizza.name}
+              ingredientes={pizza.ingredients}
+              precio={pizza.price}
+              imagen={pizza.img}
+              agregarAlCarrito={() => agregarAlCarrito(pizza)}
+              />
+            ))
+          )}
         </div>
+      </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default Home
