@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Header from './Header'
+import Header from '../components/Header'
 import { pizzas } from '../pizzas'
 import CardPizza from './CardPizza'
-import Cart from './Cart'
+
 import Pizza from './Pizza'
 
 function Home({agregarAlCarrito}) {
@@ -38,6 +38,7 @@ function Home({agregarAlCarrito}) {
             pizzas.map((pizza, index) => (
               <CardPizza
               key={pizza.id}
+              id={pizza.id}
               nombre={pizza.name}
               ingredientes={pizza.ingredients}
               precio={pizza.price}

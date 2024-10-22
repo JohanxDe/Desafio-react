@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Footer from './Footer'
+import Footer from '../components/Footer'
 
-function Login({onLoginSuccess}) {
+function Login({ onLoginSuccess }) {
     const[email, setEmail] = useState("")
     const[contras, setContras] = useState("")
     const[error, setError] = useState(false) //error, para formulario que este erroneo y salga el mensaje
@@ -23,10 +23,15 @@ function Login({onLoginSuccess}) {
         setError("");
         setEmail('');
         setContras('');
+
         onLoginSuccess(); //llama a la funcion para regresar a App
 
         alert("Login exitoso") // Mensaje de éxito
     };
+
+    const handleLogin = () =>{
+        onLoginSuccess(email);
+    } 
     
     let cardStyle = {
         display: 'flex',
@@ -62,17 +67,23 @@ function Login({onLoginSuccess}) {
                     value={email}
                     type="email"
                     placeholder='ingrese su email'
+                    style={{ marginBottom: '10px', padding: '10px', width: '90%' }}
                     />
+
                     <input 
                     onChange={(e) => setContras(e.target.value)}
                     value={contras}
                     type="password" 
-                    placeholder='ingrese su contraseña' />
-                    <button type='submit'>Entrar</button>
+                    placeholder='ingrese su contraseña'
+                    style={{ padding: '10px', width: '90%' }}
+                    />
+                    <button type='submit' style={{ marginTop: '10px', padding: '10px', width: '98%', backgroundColor: 'grey', color: 'white' }} 
+                    onClick={handleLogin}
+                    >Entrar</button>
                 </div>
             </form>
         </div>
-    <Footer/>
+    
     </>
   )
 }

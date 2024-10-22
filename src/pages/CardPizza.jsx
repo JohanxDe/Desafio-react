@@ -1,6 +1,9 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-const CardPizza = ({nombre, ingredientes, precio, disponible, imagen, agregarAlCarrito}) => {
+const CardPizza = ({id, nombre, ingredientes, precio, disponible, imagen, agregarAlCarrito}) => {
+ 
 
   return (
     <div className="pizza-card">
@@ -13,6 +16,9 @@ const CardPizza = ({nombre, ingredientes, precio, disponible, imagen, agregarAlC
       </ul>
       <p>Precio: ${precio.toLocaleString('es-CL')} CLP</p> 
       <button onClick={agregarAlCarrito}>Agregar al carrito</button>
+      <Link to={`/pizza/${id}`}>
+      <button>Ver Mas</button>
+      </Link>
     </div>
   );
 };

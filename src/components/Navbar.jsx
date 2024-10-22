@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { formatNumber } from '../helpers/formatNumbers';
 
-function Navbar({ onRegisterClick, onLoginClik, onCartClick }) {
-    // Estado para manejar el token
-    const [token, setToken] = useState(false);
+function Navbar({ isAuthenticated, onLogout, onCartClick,  }) {
 
     let estiloBotones = {
         display: "flex",
@@ -17,7 +16,8 @@ function Navbar({ onRegisterClick, onLoginClik, onCartClick }) {
         fontSize: "14px",
         borderRadius: "5px",
         cursor: "pointer",  // Hace que el cursor cambie al pasar sobre el botón
-        border: "solid 1px black"
+        border: "solid 1px black",
+        textDecoration: "none",
     };
     let barra = {
         display: "flex",
@@ -45,22 +45,22 @@ function Navbar({ onRegisterClick, onLoginClik, onCartClick }) {
                 <div style={barra}>
                     <div style={estiloBotones}>
                         <h3>MAMA Tuya</h3>
-                        <button style={botones}>Home</button>
+                        <Link to="/" style={{...botones}} >Home</Link>
 
-                        {token ? (
+                        {isAuthenticated ? (
                             <>
-                                <button style={botones}>🔓 Profile</button>
-                                <button style={botones} onClick={() => setToken(false)}>🔒 Logout</button>
+                                <Link to="/profile" style={{...botones}}>Profile</Link>
+                                <button style={botones} onClick={onLogout}>🔒 Logout</button>
                             </>
                         ) : (
                             <>
-                                <button style={botones} onClick={() => { setToken(true); onLoginClik() }}>🔐 Login</button>
-                                <button style={botones} onClick={onRegisterClick}>🔐 Register</button>
+                                <Link to="/login" style={{...botones}}>🔐 Login</Link> 
+                                <Link to="/register" style={{...botones}}> 🔐 Register </Link>
                             </>
                         )}
                     </div>
                     <div>
-                        <button onClick={onCartClick} style={botonTotal}>🛒 Total:</button>
+                        <Link to="/cart" style={botonTotal}>🛒 Total:</Link>
                     </div>
                 </div>
             </div>

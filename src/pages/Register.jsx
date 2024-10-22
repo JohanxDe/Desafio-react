@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import Footer from './Footer';
+import Footer from '../components/Footer';
 
 
 function Register({ onRegisterSuccess }) {

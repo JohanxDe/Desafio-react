@@ -11,7 +11,7 @@ function Header() {
     };
   return (
     <div style={estilo} >
-      <h1>Esta es la Pizeria MAMA TUYA!!</h1>
+      <h1>Esta es la Pizzeria MAMA TUYA!!</h1>
       <p>En esta pizzeria no se lavan las manos</p>
     </div>
   )

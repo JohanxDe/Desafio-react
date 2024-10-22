@@ -1,40 +1,48 @@
 import React, { useState } from 'react';
+import {Route, Routes, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Register from './components/register';
+import Home from './pages/Home';
+import Register from './pages/Register';
 import Footer from './components/Footer';
 //import Propiedades from './components/Propiedades';
-import Login from './components/Login';
-import Cart from './components/Cart';
+import Login from './pages/Login';
+import Profile from './pages/Profile';
+import Cart from './pages/Cart';
+import NotFound from './pages/NotFound';
+import Pizza from './pages/Pizza';
+import { Navigate } from 'react-router-dom';
+
 
 function App() {
-    const [mostrarRegistro, setMostrarRegistro] = useState(false);
-    const [mostrarLogin, setMostrarLogin] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [pizzaCart, setPizzaCart] = useState([]);
-    const [mostrarCarrito, setMostrarCarrito] = useState(false)
+    const navigate = useNavigate();
+    const [userEmail, setUserEmail] = useState('')
+    const [mostrarCarrito, setMostrarCarrito] = useState(false);
+    
+    
 
-    const mostrarFormularioRegistro = () => {
-        setMostrarRegistro(true); // Cambiar a true para mostrar el formulario de registro
-        setMostrarLogin(false);// cambia a false para que solo se muestre registro
+    const handleLoginSuccess = () => {
+        setIsAuthenticated(true); // Marca al usuario como autenticado
+        navigate('/'); // Redirige a Home
     };
 
-    const mostrarFormularioLogin = () => {
-        setMostrarLogin(true); // Cambiar a true para mostrar el formulario de Login
-        setMostrarRegistro(false); // Cambia a false para que solo se muestre Login
+    // Función para manejar logout
+    const handleLogout = () => {
+        setIsAuthenticated(false);
+        navigate('/');
     };
 
-    const regresarAlHome = () => {
-        setMostrarRegistro(false); // Cambiar a false para que muestre app
-        setMostrarLogin(false); // Camabia a false para que muestre app
-    };
 
     const agregarAlCarrito = (pizzaSeleccionada) => {
-        const pizzaEnCarrito = pizzaCart.find((pizza) => pizza.nombre === pizzaSeleccionada.nombre);
+        const pizzaEnCarrito = pizzaCart.find(pizza => pizza.id === pizzaSeleccionada.id);
 
         if (pizzaEnCarrito) {
-            const nuevoCarrito = pizzaCart.map((pizza) =>
-                pizza.nombre === pizzaSeleccionada.nombre ? { ...pizza, cantidad: pizza.cantidad + 1 }
-                    : pizza);
+            const nuevoCarrito = pizzaCart.map(pizza =>
+                pizza.id === pizzaSeleccionada.id
+                    ? { ...pizza, cantidad: pizza.cantidad + 1 }
+                    : pizza
+            );
             setPizzaCart(nuevoCarrito);
         }
         else {
@@ -42,8 +50,9 @@ function App() {
         }
     };
 
-    const toggleCarrito = () => {
-        setMostrarCarrito(!mostrarCarrito);
+    const eliminarDelCarrito = (pizzaAEliminar) => {
+        const nuevoCarrito = pizzaCart.filter(pizza => pizza.id !== pizzaAEliminar.id);
+        setPizzaCart(nuevoCarrito);
     };
 
     let card = {
@@ -62,18 +71,33 @@ function App() {
     return (
         <>
             <div>
+                <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+                <Routes>
+                    <Route path='/' element={<Home agregarAlCarrito={agregarAlCarrito}/>} />
+                    <Route path='/login' element={<Login onLoginSuccess={handleLoginSuccess}/>}/>
+                    <Route path='/register' element={<Register onRegisterSuccess={handleLoginSuccess} />}/>
+                    <Route path='/profile' element={isAuthenticated ? <Profile email={userEmail} /> 
+                    :
+                     <Navigate to="/login" />} 
+/>
+                    <Route path='/pizza/:id' element={<Pizza agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path='/cart' element={<Cart pizzaCart={pizzaCart} onRemoveFromCart={eliminarDelCarrito} />}/>
+                    <Route path='*' element={<NotFound/>}/>
+                </Routes>
+                {/*}
                 <Navbar onRegisterClick={mostrarFormularioRegistro} //lama a formulario registros
                     onLoginClik={mostrarFormularioLogin} //llama a formulario Login
                     onCartClick={toggleCarrito}//llama a carrito
                 />
 
-                {/* Si mostrarRegistro es true, mostramos el formulario Register */}
+                 Si mostrarRegistro es true, mostramos el formulario Register 
                 {mostrarRegistro ? (
                     <Register onRegisterSuccess={regresarAlHome} /> //llama al App cuando se registren con exito
                 ) : mostrarLogin ? (
                     <Login onLoginSuccess={regresarAlHome} /> //llama al App cuando se logen con exito
                 ) : (
-                    <>
+                    <>*/}
+                    {/*
                         <Home agregarAlCarrito={agregarAlCarrito} />
                         {mostrarCarrito && (
                             <Cart pizzaCart={pizzaCart} setPizzaCart={setPizzaCart} />
@@ -128,10 +152,11 @@ function App() {
                                     </button>
                                 </div>
                             </div>
-                        </div> */}
-                        <Footer />
+                        </div> 
+                        
                     </>
-                )}
+                )}*/}
+                <Footer />
             </div>
         </>
     );

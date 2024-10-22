@@ -155,3 +155,28 @@ body{
   list-style-position: inside; /* Mueve el punto de la lista hacia adentro */
   margin-bottom: 5px; /* Agrega un pequeño margen entre los elementos de la lista */
 }
+
+.Error{
+  color: black;
+  text-align: center;
+  margin-bottom: 100px;
+  margin-top: 50px;
+}
+.Error h2{
+  margin-bottom: 10px;
+}
+
+.cartaPerfil{
+  color: black;
+  display: 'flex';
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 200px auto;
+  width: 300px;
+  border: 1px#ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
