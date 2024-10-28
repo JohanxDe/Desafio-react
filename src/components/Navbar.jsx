@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../CartContex';
 import { formatNumber } from '../helpers/formatNumbers';
 
-function Navbar({ isAuthenticated, onLogout, onCartClick,  }) {
+function Navbar({isAuthenticated, onLogout}) {
+
+    const {calculateTotal} = useCart();
 
     let estiloBotones = {
         display: "flex",
@@ -60,7 +63,7 @@ function Navbar({ isAuthenticated, onLogout, onCartClick,  }) {
                         )}
                     </div>
                     <div>
-                        <Link to="/cart" style={botonTotal}>🛒 Total:</Link>
+                        <Link to="/cart" style={botonTotal}>🛒 Carrito (Total: ${calculateTotal()})</Link>
                     </div>
                 </div>
             </div>

@@ -1,36 +1,31 @@
 import React from 'react';
+import { useCart } from '../CartContex';
 
-function Cart({ pizzaCart, onRemoveFromCart }) {
-
-    // Calcular el total del carrito sumando los totales de cada pizza
-    const calcularTotal = () => {
-        return pizzaCart.reduce((total, pizza) => total + (pizza.price * pizza.cantidad), 0);
-    };
+const Cart = () => {
+    
+    const {cartItems, removeFromCart, calculateTotal} = useCart();
 
     return (
         <div style={{color: 'black'}}>
-            <h1>Carrito de Compras</h1>
-            {pizzaCart.length === 0 ? (
-                <p>No tienes pizzas en tu carrito.</p>
-            ) : (
-                <div>
-                    <ul>
-                        {pizzaCart.map((pizza, index) => (
-                            <li key={index} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
-                                <h2>{pizza.name}</h2>
-                                <img src={pizza.img} alt={pizza.name} style={{ width: '100px', height: '100px' }} />
-                                <p>Precio unitario: ${pizza.price.toLocaleString('es-CL')} CLP</p>
-                                <p>Cantidad: {pizza.cantidad}</p>
-                                <p>Total por este producto: ${(pizza.price * pizza.cantidad).toLocaleString('es-CL')} CLP</p>
-                                <button onClick={() => onRemoveFromCart(pizza)}>Eliminar del carrito</button>
-                            </li>
-                        ))}
-                    </ul>
-                    <h3>Total del carrito: ${calcularTotal().toLocaleString('es-CL')} CLP</h3>
+          <h1>Carrito de Compras</h1>
+          {cartItems.length === 0 ? (
+            <p>El carrito está vacío</p>
+          ) : (
+            <div>
+              {cartItems.map((item) => (
+                <div key={item.id} style={{borderBottom: '1px solid #ccc', marginBottom: '15px', marginBottom:'15px', paddingLeft:'10px' }}>
+                    <img src={item.img} alt={item.name} style={{width: '100px', height: 'auto', marginRight:'10px'}} />
+                  <p>{item.name}</p>
+                  <p>Cantidad: {item.quantity}</p>
+                  <p>Precio: ${item.price * item.quantity}</p>
+                  <button onClick={() => removeFromCart(item.id)}>Eliminar</button>
                 </div>
-            )}
+              ))}
+              <h2>Total: ${calculateTotal()}</h2>
+            </div>
+          )}
         </div>
-    );
-}
-
-export default Cart;
+      );
+    };
+    
+    export default Cart;

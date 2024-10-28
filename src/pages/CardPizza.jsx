@@ -16,7 +16,7 @@ const CardPizza = ({id, nombre, ingredientes, precio, disponible, imagen, agrega
       </ul>
       <p>Precio: ${precio.toLocaleString('es-CL')} CLP</p> 
       <button onClick={agregarAlCarrito}>Agregar al carrito</button>
-      <Link to={`/pizza/${id}`}>
+      <Link to={`/pizza/${id}`} style={{paddingLeft: '2px'}}>
       <button>Ver Mas</button>
       </Link>
     </div>
