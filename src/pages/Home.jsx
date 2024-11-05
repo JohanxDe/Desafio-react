@@ -26,6 +26,7 @@ function Home() {
             pizzas.map((pizza) => (
               <CardPizza
                 key={pizza.id}
+                id={pizza.id}
                 nombre={pizza.name}
                 ingredientes={pizza.ingredients}
                 precio={pizza.price}

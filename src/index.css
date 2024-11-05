@@ -180,3 +180,92 @@ body{
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Contenedor principal */
+.pizza-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 10px;
+}
+
+/* Título de la pizza */
+.pizza-title {
+  font-size: 2em;
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Contenedor de contenido (imagen e info) */
+.pizza-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Imagen de la pizza */
+.pizza-image {
+  width: 250px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Información de la pizza */
+.pizza-info {
+  flex: 1;
+}
+
+/* Descripción de la pizza */
+.pizza-description {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* Título de ingredientes */
+.pizza-ingredients-title {
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* Lista de ingredientes */
+.pizza-ingredients {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ingredient-item {
+  font-size: 0.95em;
+  color: #777;
+}
+
+/* Precio */
+.pizza-price {
+  font-size: 1.4em;
+  color: #2c3e50;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Botón de agregar al carrito */
+.add-to-cart-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #c0392b;
+}

@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound';
 import Pizza from './pages/Pizza';
 import { Navigate } from 'react-router-dom';
 import { CartProvider } from './CartContex';
+import { UserProvider } from './UserContext';
 
 
 function App() {
@@ -50,22 +51,24 @@ function App() {
     return (
         <>
             <div>
-                <CartProvider>
-                    <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
-                    <Routes>
-                        <Route path='/' element={<Home/>} />
-                        <Route path='/login' element={<Login onLoginSuccess={handleLoginSuccess}/>}/>
-                        <Route path='/register' element={<Register onRegisterSuccess={handleLoginSuccess} />}/>
-                        <Route path='/profile' element={isAuthenticated ? <Profile email={userEmail} /> 
-                        :
-                        <Navigate to="/login" />} 
-    />
-                        <Route path='/pizza/:id' element={<Pizza/>} />
-                        <Route path='/cart' element={<Cart/>}/>
-                        <Route path='*' element={<NotFound/>}/>
-                    </Routes>
-                    <Footer />
-                </CartProvider>
+                <UserProvider>
+                    <CartProvider>
+                        <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+                        <Routes>
+                            <Route path='/' element={<Home/>} />
+                            <Route path='/login' element={<Login onLoginSuccess={handleLoginSuccess}/>}/>
+                            <Route path='/register' element={<Register onRegisterSuccess={handleLoginSuccess} />}/>
+                            <Route path='/profile' element={isAuthenticated ? <Profile email={userEmail} /> 
+                            :
+                            <Navigate to="/login" />} 
+        />
+                            <Route path='/pizza/:id' element={<Pizza/>} />
+                            <Route path='/cart' element={<Cart/>}/>
+                            <Route path='*' element={<NotFound/>}/>
+                        </Routes>
+                        <Footer />
+                    </CartProvider>
+                </UserProvider>
             </div>
         </>
     );

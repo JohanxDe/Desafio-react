@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import Footer from '../components/Footer'
+import { useUser } from '../UserContext'
 
 function Login({ onLoginSuccess }) {
+    const {login} = useUser();
     const[email, setEmail] = useState("")
     const[contras, setContras] = useState("")
     const[error, setError] = useState(false) //error, para formulario que este erroneo y salga el mensaje
@@ -31,6 +33,8 @@ function Login({ onLoginSuccess }) {
 
     const handleLogin = () =>{
         onLoginSuccess(email);
+        const fakeToken = 'miTokenDeAutenticacion';
+        login(fakeToken);  // Llama al login con el token simulado
     } 
     
     let cardStyle = {

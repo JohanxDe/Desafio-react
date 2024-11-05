@@ -1,9 +1,11 @@
 import React from 'react';
 import { useCart } from '../CartContex';
+import { useUser } from '../UserContext';
 
 const Cart = () => {
     
     const {cartItems, removeFromCart, calculateTotal} = useCart();
+    const { isAuthenticated } = useUser();
 
     return (
         <div style={{color: 'black'}}>
@@ -24,6 +26,23 @@ const Cart = () => {
               <h2>Total: ${calculateTotal()}</h2>
             </div>
           )}
+          <button
+            onClick={() => alert('Pago exitoso!')}
+            disabled={cartItems.length === 0 || !isAuthenticated}
+            style={{
+              backgroundColor: cartItems.length === 0 || !isAuthenticated ? '#ccc' : '#28a745',
+              color: 'white',
+              padding: '10px 20px',
+              fontSize: '1em',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: cartItems.length === 0 || !isAuthenticated ? 'not-allowed' : 'pointer',
+              marginTop: '20px'
+            }}
+          >
+            Pagar
+          </button>
+          {!isAuthenticated && <p>Por favor, inicie sesión para realizar el pago.</p>}
         </div>
       );
     };
