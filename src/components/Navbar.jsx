@@ -1,32 +1,34 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../CartContex';
+import { useUser } from '../UserContext';
 import { formatNumber } from '../helpers/formatNumbers';
 
-function Navbar({isAuthenticated, onLogout}) {
+function Navbar() {
 
     const {calculateTotal} = useCart();
+    const {isAuthenticated, logout} = useUser();
 
     let estiloBotones = {
         display: "flex",
         textAlign: "center",
+
     };
     let botones = {
         margin: "0 5px",  // margen entre los botones
-        border: "0",
+        
         backgroundColor: "grey",
         color: "white",
-        fontSize: "14px",
+        fontSize: "15px",
         borderRadius: "5px",
         cursor: "pointer",  // Hace que el cursor cambie al pasar sobre el botón
-        border: "solid 1px black",
+        paddingLeft: "5px 10px",
         textDecoration: "none",
     };
     let barra = {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        border: "0px"
     };
     let divPrincipal = {
         backgroundColor: "grey",
@@ -35,9 +37,10 @@ function Navbar({isAuthenticated, onLogout}) {
     let botonTotal = {
         color: "#00c9ff",
         borderColor: "#00c9ff",
-        border: "solid 1px",
         backgroundColor: "black",
-        cursor: "pointer"
+        padding: "8px 12px",
+        cursor: "pointer",
+        textDecoration: "none",
     };
 
     const total = 25000;
@@ -53,7 +56,7 @@ function Navbar({isAuthenticated, onLogout}) {
                         {isAuthenticated ? (
                             <>
                                 <Link to="/profile" style={{...botones}}>Profile</Link>
-                                <button style={botones} onClick={onLogout}>🔒 Logout</button>
+                                <button style={botones} onClick={logout}>🔒 Logout</button>
                             </>
                         ) : (
                             <>

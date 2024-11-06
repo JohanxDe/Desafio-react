@@ -4,12 +4,12 @@ const UserContext = createContext();
 
 //proveedor
 export const UserProvider = ({children}) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            setIsAuthenticated(true);
+            setIsAuthenticated(!!true);
         }
     }, []);
 
@@ -18,6 +18,7 @@ export const UserProvider = ({children}) => {
     const login = (token) => {
         localStorage.setItem('token', token);
         setIsAuthenticated(true);
+        console.log("usuario verificado", isAuthenticated)
     }
     const logout = () =>{
         localStorage.removeItem('token');
