@@ -7,7 +7,7 @@ const Cart = () => {
     const { cartItems, removeFromCart, calculateTotal } = useCart();
     const { isAuthenticated } = useUser();
 
-    console.log("Estado de autenticación en Cart:", isAuthenticated);
+    console.log("Estado de autenticación en Cart de login:", isAuthenticated);
     
     return (
         <div className="cart-container">
