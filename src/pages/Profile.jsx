@@ -1,20 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useUser } from '../UserContext';
 
-const Profile = () => {
-    const { email, logout, fetchProfile } = useUser();
 
-    useEffect(() => {
-        fetchProfile();
-    }, [fetchProfile]);
+const Profile = () => {
+    const { email, logout } = useUser();
 
     return (
-        <div>
+        <div className="profile-container">
             <h2>Perfil</h2>
-            {email ? <p>Email: {email}</p> : <p>Cargando perfil...</p>}
-            <button onClick={logout}>Cerrar sesión</button>
+            <div className="profile-info">
+                <p>Email: {email}</p>
+            </div>
+            <button className="logout-button" onClick={logout}>Cerrar Sesión</button>
         </div>
     );
 };
-
 export default Profile;

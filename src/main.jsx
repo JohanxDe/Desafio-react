@@ -9,9 +9,9 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   
-  <UserProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <UserProvider>
       <App />
-    </BrowserRouter>
-  </UserProvider>
+    </UserProvider>
+  </BrowserRouter>
 );
